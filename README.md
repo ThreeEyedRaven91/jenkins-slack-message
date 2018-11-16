@@ -32,8 +32,8 @@ Config Env if you want
 pipeline {
     ...
     environment {
-        TER_SLACK_HOOK_KEY = 'T0D5XQZMY/BD0A2GK42/6vBxehD4lPtxfwLvEJ094oX4'
-        TER_SLACK_CHANNEL = '#jenkins-inno-insight'
+        TER_SLACK_HOOK_KEY = '<hookKey>'
+        TER_SLACK_CHANNEL = '<channel>'
     }
     ...
 }
