@@ -1,3 +1,5 @@
+import groovy.json.*
+
 def message(args) {
     def hookKey = args.hookKey ? args.hookKey : env.TER_SLACK_HOOK_KEY
     def channel = args.channel ? args.channel : env.TER_SLACK_CHANNEL
