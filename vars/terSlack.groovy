@@ -2,8 +2,15 @@ def message(args) {
     def hookKey = args.hookKey ? args.hookKey : env.TER_SLACK_HOOK_KEY
     def channel = args.channel ? args.channel : env.TER_SLACK_CHANNEL
 
+    def payload = [
+            channel: channel,
+            username: "Jenkins",
+            text: args.message,
+    ]
+    def payloadString = JsonOutput.toJson(payload);
+
     def post = new URL("https://hooks.slack.com/services/${hookKey}").openConnection()
-    def message = "payload={\"channel\": \"${channel}\", \"username\": \"Jenkins\", \"text\": \"${args.message}\" }"
+    def message = "payload=${payloadString}"
 
     post.setRequestMethod("POST")
     post.setDoOutput(true)
