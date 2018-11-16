@@ -3,11 +3,17 @@ import groovy.json.*
 def message(args) {
     def hookKey = args.hookKey ? args.hookKey : env.TER_SLACK_HOOK_KEY
     def channel = args.channel ? args.channel : env.TER_SLACK_CHANNEL
+    def color = args.color
 
     def payload = [
-            channel: channel,
-            username: "Jenkins",
-            text: args.message,
+        channel: channel,
+        username: "Jenkins",
+        attachments: [
+            [
+                text: args.message,
+                color: color,
+            ]
+        ]
     ]
     def payloadString = JsonOutput.toJson(payload);
 
