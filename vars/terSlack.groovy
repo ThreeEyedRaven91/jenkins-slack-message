@@ -1,3 +1,3 @@
-def message(message) {
-    echo "INFO: ${message}"
+def message(message, args) {
+    echo "INFO: ${message} ${args}"
 }
