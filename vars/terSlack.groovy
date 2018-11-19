@@ -12,6 +12,7 @@ def message(args) {
             [
                 text: args.message,
                 color: color,
+                fields: args.fields
             ]
         ]
     ]
