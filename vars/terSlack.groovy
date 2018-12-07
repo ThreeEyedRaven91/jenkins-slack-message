@@ -12,6 +12,7 @@ def message(args) {
             [
                 author_name: "Jenkins",
                 title: args.message,
+                title_link: args.title_link,
                 color: color,
                 fields: args.fields
             ]
@@ -34,6 +35,32 @@ def message(args) {
 }
 
 def infoMessage(args) {
-    sh 'printenv'
+    if (env.PROJECT_NAME) {
+        args.fields.add([
+            title: "Project",
+            value: env.PROJECT_NAME,
+            short: true
+        ])
+    }
+    args.fields.add([
+        title: "Author",
+        value: env.CHANGE_AUTHOR,
+        short: true
+    ])
+    args.fields.add([
+        title: "Merge from",
+        value: env.CHANGE_BRANCH,
+        short: true
+    ])
+    args.fields.add([
+        title: "Message",
+        value: env.CHANGE_TITLE,
+        short: true
+    ])
+
+    if (env.JOB_DISPLAY_URL) {
+        args.title_link = env.JOB_DISPLAY_URL;
+    }
+
     message(args)
 }
