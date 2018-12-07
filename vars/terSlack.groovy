@@ -10,7 +10,8 @@ def message(args) {
         username: "Jenkins",
         attachments: [
             [
-                text: args.message,
+                author_name: "Jenkins",
+                title: args.message,
                 color: color,
                 fields: args.fields
             ]
@@ -30,4 +31,9 @@ def message(args) {
     if(postRC.equals(200)) {
         println("[Slack] ${channel}: ${args.message}")
     }
+}
+
+def infoMessage(args) {
+    sh 'printenv'
+    message(args)
 }
