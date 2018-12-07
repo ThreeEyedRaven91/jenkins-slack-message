@@ -35,6 +35,9 @@ def message(args) {
 }
 
 def infoMessage(args) {
+    if (!args.fields) {
+        args.fields = [];
+    }
     if (env.PROJECT_NAME) {
         args.fields.add([
             title: "Project",
